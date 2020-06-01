@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Faq from './view/Faq';
-
+import Faq from './view/faq';
+import Sample1 from './view/sample1';
 export default function App() {
 	return (
 		<Router>
@@ -11,24 +11,21 @@ export default function App() {
 						<li>
 							<Link to="/">Home</Link>
 						</li>
+
 						<li>
-							<Link to="/about">About</Link>
+							<Link to="/sample1">api call using hooks</Link>
 						</li>
 						<li>
-							<Link to="/users">Users</Link>
+							<Link to="/sample2">grid data api call</Link>
 						</li>
 					</ul>
 				</nav>
 
-				{/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
 				<Switch>
-					{/* <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route> */}
+					<Route path="/sample2">{/* <Sample1 /> */}</Route>
+					<Route path="/sample1">
+						<Sample1 />
+					</Route>
 					<Route path="/">
 						<Faq />
 					</Route>
