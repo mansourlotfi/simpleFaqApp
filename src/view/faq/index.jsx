@@ -13,8 +13,9 @@ class Faq extends Component {
 	state = {
 		title: 'FAQ',
 		act: 'add',
-		index: '',
-		questions: []
+		selectedQuestion: '',
+		questions: [],
+		answerInput: ''
 	};
 
 	componentDidMount() {
@@ -29,6 +30,7 @@ class Faq extends Component {
 
 		if (this.state.act === 'add') {
 			let data = {
+				id: (Math.random() * (9999 - 1) + 1).toFixed(0), // generate random id
 				name,
 				question
 			};
@@ -72,26 +74,21 @@ class Faq extends Component {
 		this.refs.name.focus();
 	};
 
-	handleChange = (index) => {
+	handleChange = (value) => {
+		const questionID =  value.currentTarget.getAttribute('data-value')
+		const question = this.state.questions.find(question => question.id === questionID)
 		this.setState({
-			act: 'edit',
-			index: index
+			selectedQuestion: question.id,
+			answerInput: question.answer || ''
 		});
-		console.warn('value', index);
 	};
 
-	answerfSubmit = (index) => {
-		// console.warn('iiiiiiii', index);
-		// let data = this.state.questions[index];
-		// if (this.state.act === 'edit') {
-    //   alert("edith")
-		// // 	let answerData = {
-		// // 		name,
-		// // 		question,
-		// // 		answer
-		// // 	};
-		// // 	questions.push(answerData);
-		// // }
+	answerfSubmit = () => {
+
+		const questions = this.state.questions.map(question => question.id === this.state.selectedQuestion
+			? {...question, answer: this.state.answerInput} : question)
+
+		this.setState({ questions })
 	};
 
 	render() {
@@ -146,14 +143,18 @@ class Faq extends Component {
 				<div className="answers">answers</div>
 				<FormControl style={{ minWidth: 300 }}>
 					<InputLabel>انتخاب سوال برای پاسخ</InputLabel>
-					<Select value={questions.value} onChange={(index) => this.handleChange(index)}>
+					<Select value={questions.value} onChange={(value) => this.handleChange(value)}>
 						{this.state.questions.map((questions, index) => (
-							<MenuItem key={index} value={questions.question}>
+							<MenuItem key={index} value={questions.id}>
 								{questions.question}
 							</MenuItem>
 						))}
 					</Select>
-					<textarea type="text" ref="answer" placeholder="سوال خود را مطرح نمایید" className="formField" />
+					<textarea type="text" ref="answer" value={this.state.answerInput}
+							  onChange={(e) =>
+									this.setState({answerInput: e.target.value})}
+							  placeholder="سوال خود را مطرح نمایید"
+							  className="formField" />
 					<Button
 						variant="contained"
 						color="primary"
