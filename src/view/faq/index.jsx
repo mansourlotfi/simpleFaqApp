@@ -137,6 +137,8 @@ class Faq extends Component {
 							>
 								ویرایش
 							</Button>
+							answer :
+							{data.answer? data.answer : "پاسخی وجود ندارد"}
 						</li>
 					))}
 				</div>

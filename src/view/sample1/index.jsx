@@ -64,7 +64,6 @@ export default function Sample1() {
 											variant="subtitle1"
 											style={{
 												paddingRight: '50px',
-												fontFamily: 'yekan',
 												fontSize: 24,
 												fontWeight: 700
 											}}
@@ -74,7 +73,7 @@ export default function Sample1() {
 										<Typography
 											variant="body2"
 											gutterBottom
-											style={{ padding: '15px', fontFamily: 'yekan', fontSize: 22 }}
+											style={{ padding: '15px', fontSize: 22 }}
 										>
 											لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
 											طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
@@ -87,7 +86,7 @@ export default function Sample1() {
 										<Typography
 											variant="body2"
 											color="textSecondary"
-											style={{ padding: '15px', fontFamily: 'yekan', fontSize: 22 }}
+											style={{ padding: '15px', fontSize: 22 }}
 										>
 											نویسنده:
 											<br />
